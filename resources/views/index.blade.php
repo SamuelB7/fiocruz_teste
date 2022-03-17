@@ -33,10 +33,10 @@
                                 <td>{{ $user->cpf }}</td>
                                 <td>{{ $user->birthday }}</td>
                                 <td>{{ $user->nationality }}</td>
-                                <td class="d-flex gap-2">
+                                <td class="d-flex" style="gap: 5px;">
 {{--                                <a href="" class="btn btn-light p-2"></a>--}}
                                     <a href="/users/{{$user->id}}/edit" class="btn btn-light">Editar usuário</a>
-                                    <form style="margin: 0;" method="POST" action="">
+                                    <form style="margin: 0;" method="POST" action="/users/{{$user->id}}">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza?')">Deletar usuário</button>

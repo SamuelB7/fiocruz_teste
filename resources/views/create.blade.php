@@ -19,7 +19,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="name">CPF</label>
+                                <label for="cpf">CPF</label>
                                 <input class="form-control" type="text" name="cpf" id="cpf" required>
                                 @error('cpf')
                                 <span class="text-danger">{{ $message }}</span>
@@ -33,22 +33,29 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="email">Data de nascimento</label>
+                                <label for="birthday">Data de nascimento</label>
                                 <input class="form-control" type="date" name="birthday" id="birthday" required>
                                 @error('birthday')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="email">Nacionalidade</label>
+                                <label for="nationality">Nacionalidade</label>
                                 <input class="form-control" type="text" name="nationality" id="nationality" required>
                                 @error('nationality')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="email">Telefone</label>
-                                <input class="form-control" type="phone" name="phone_number" id="phone_number" required>
+                                <label for="phone_number">Telefone 1</label>
+                                <input class="form-control" type="phone" name="phone_number[]" id="phone_number" required>
+                                @error('phone_number')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="phone_number">Telefone 2</label>
+                                <input class="form-control" type="phone" name="phone_number[]" id="phone_number">
                                 @error('phone_number')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror

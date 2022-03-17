@@ -27,7 +27,6 @@ class UserController extends Controller
             'birthday' => 'required',
             'nationality' => 'required',
             'password' => 'required',
-            'phone_number' => 'required'
         ]);
 
         $user = User::create([
@@ -39,10 +38,12 @@ class UserController extends Controller
             'password' => Hash::make($request['password']),
         ]);
 
-        PhoneNumber::create([
-            'number' => $request['phone_number'],
-            'user_id' => $user->id
-        ]);
+        foreach ($request['phone_number'] as $item) {
+            PhoneNumber::create([
+                'number' => $item,
+                'user_id' => $user->id
+            ]);
+        }
 
         return redirect('/users')->with('success', 'Usuário salvo com sucesso');
     }
@@ -84,5 +85,11 @@ class UserController extends Controller
         $user->save();
 
         return redirect('/users')->with('success', 'Usuário atualizado com sucesso');
+    }
+
+    public function destroy($id) {
+        User::destroy($id);
+
+        return redirect('/users')->with('success', 'Usuário deletado com sucesso');
     }
 }

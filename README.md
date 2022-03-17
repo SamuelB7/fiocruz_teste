@@ -1,64 +1,164 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Respostas exercícios
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Exercício 1
+    <?php
+        abstract class Animal {
+            abstract public function emitirSom();
+        }
+    
+        class Cachorro extends Animal {
+            public function emitirSom()
+            {
+                return 'auau!';
+            }
+        }
+    
+        $fred = new Cachorro();
+        echo $fred->emitirSom();
+    
+        class Vaca extends Animal {
+            public function emitirSom()
+            {
+                return "muuuuuu!";
+            }
+        }
+    
+        $jurema = new Vaca();
+        echo $jurema->emitirSom();
+    
+        class Galinha extends Animal {
+            public function emitirSom()
+            {
+                return "cócóricó!";
+            }
+        }
+    
+        $josefina = new Galinha();
+        echo $josefina->emitirSom();
 
-## About Laravel
+### Exercício 3
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+O INNER JOIN é utilizado para pegar os dados relacionados de duas tabelas. <br>
+Já o LEFT JOIN, além de pegar os dados relacionados, ele consegue também obter dados não relacionados, nesse caso se não houver relacionamento encontrado, ele retornará valores nulos nas colunas.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Exercício 4
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+O Elouquent é um ORM que já vem embutido no framework Laravel, a sua principal função
+é ajudar o desenvolvedor na hora de trabalhar com bancos de dados relacionais. <br>
+Em uma abordagem mais tradicional, para realizar um determinado comando no banco de dados,
+o desenvolvedor precisa escrever a query na 'na mão', por exemplo:
 
-## Learning Laravel
+    SELECT * FROM users;
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Esse é um exemplo de uma query bem simples, mas dependendo da complexidade da consulta a ser
+realizada, a query que deve ser escrita fica muito extensa e mais complexa de entender,
+e caso o banco de dados seja trocado, dependendo do caso, o desenvolvedor deverá reescrever
+tudo de novo, pois apesar dos BDs relacionais serem muito parecidos, (MySQL, Postgres e MariaDB por exemplo),
+podem existir tipos e outras situações específicas onde uma query para um determinado BD não funcione em outro
+BD.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Exercício 5
 
-## Laravel Sponsors
+O Blade é uma template engine que ja vem junto com o Laravel, ele ajuda na hora de trabalhar com as views.
+Ele permite modularizar o front-end da aplicação. <br>
+Por exemplo, é possivel criar um arquivo index.blade.php que contém todas as importações que a
+aplicação vai utilizar (estilos, scripts e etc...) e na hora de criar outras páginas, ao invés de ter
+que importar tudo de novo, basta extender o arquivo index dentro da nova página, assim essa nova página
+vai ter acesso a todos os script e estilos necessários sem ter que ficar reescrevendo código. <br>
+Exmplo de sintaxe do blade para extender o código: <br>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    @extends('index')
+<br>
+Outra situação em que o blade ajuda muito, é na manipulação dos dados que vem do back-end.
+Ele permite utilizar dentro do html, funcionalidades que normalmente só existem em linguagens
+de programação, como estruturas de repetição e condicionais. <br>
+Por exemplo, para criar uma tabela com dados que vem dentro de um array: 
+<br>
 
-### Premium Partners
+    @foreach($users as $user)
+        <tr>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->email }}</td>
+            <td>{{ $user->role }}</td>
+        </tr>
+    @endforeach
+<br>
+No caso apresentado acima, ele está recebendo um array chamado 'users' e,
+para cada item do array ele está criando uma linha na tabela com os dados dentro de cada
+índice do array.
+<br>
+Outro exemplo é de uma estrutura condicional:
+<br>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+    @if('condição') 
+        //Comando se atender a condição 
+    @elseif('outra condição) 
+        //Comando se atender a condição 
+    @else 
+        //Comando caso nehuma outra condição funcione 
+    @endif
+<br>
+Esses são exemplos básicos, o blade, apesar de simples, é bem robusto e
+pode atender a todas as necessidades de um sistema.
+<br>
 
-## Contributing
+### Exercício 6
+Exemplo:
+<br>
+Model:
+<br>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    php artisan make:model User
+<br>
+Controller:
+<br>
 
-## Code of Conduct
+    php artisan make:controller UserController
+<br>
+Migration:
+<br>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    php artisan make:migration create_user_table
+<br>
+É possivel também criar o model e o controller com apenas um comando:
+<br>
 
-## Security Vulnerabilities
+    php artisan make:controller UserController --model=User
+<br>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Exercício 7
+Sequência de comandos necessários:
+<br>
+    
+    git checkout -b card#1000 dev
+<br>
+Após fazer as alterações:
+<br>
+    
+    git add .
+    git commit -m "algum comentário"
+    git push origin card#1000
+    git checkout teste
+    git merge card#1000
+<br>
 
-## License
+### Exercício 8
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Usando como base o *.env.example* crie um novo arquivo *.env* e preencha com os dados de acesso ao banco de dados.
+<br>
+Exemplo:
+<br>
+
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=fiocruz_crud
+    DB_USERNAME=admin
+    DB_PASSWORD=1234
+
+Para rodar o projeto:
+<br>
+
+    php artisan serve
+<br>
+
