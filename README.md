@@ -162,3 +162,4 @@ Para rodar o projeto:
     php artisan serve
 <br>
 
+Ao acessar a rota principal, você direcionado para um pequeno dashboard, onde poderá testar as funções do CRUD.
