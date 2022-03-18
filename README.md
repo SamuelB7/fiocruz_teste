@@ -56,6 +56,37 @@ e caso o banco de dados seja trocado, dependendo do caso, o desenvolvedor dever�
 tudo de novo, pois apesar dos BDs relacionais serem muito parecidos, (MySQL, Postgres e MariaDB por exemplo),
 podem existir tipos e outras situações específicas onde uma query para um determinado BD não funcione em outro
 BD.
+<br>
+Aí está uma das principais vantagens do Elouquent, com ele o desenvolvedor pode usar a mesma sintaxe para
+fazer consultas em praticamente todos os BDs relacionais. 
+<br>
+Usando o mesmo exemplo anterior,
+só que com o Elouquent:
+
+    User::all();
+<br>
+É um exemplo bem simples, mas aqui já se pode perceber uma melhor legibilidade da query.
+<br>
+ Outra grande vantagem de se utilizar o Elouquent, é na hora de trabalhar com
+relacionamentos entre as tabelas. O Elouquent faz tudo quase que automaticamente,
+o desenvolvedor só precisa escrever corretamente o relacionamento no model e criar a
+FK corretamente na tabela. <br>
+Um exemplo de um relacionamento entre cliente e produto, onde
+um cliente pode ter muitos produtos:
+<br>
+
+    class Cliente extends Model
+    {
+        public function produtos()
+        {
+            return $this->hasMany(Produtos::class);
+        }
+    }
+<br>
+Aqui também podemos perceber uma melhoria na legibilidade do código o que facilita muito na hora de trabalhar
+com relacionamentos.
+<br>
+Resumindo, o Elouquent ajuda o desenvolvedor a ser mais produtivo na hora de trabalhar com banco de dados.
 
 ### Exercício 5
 
